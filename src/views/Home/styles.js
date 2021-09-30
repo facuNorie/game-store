@@ -42,13 +42,23 @@ export const Card = styled.div`
   .containerSecondaryCards {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    div {
+      display: flex;
+      align-items: center;
+      i {
+        margin-left: 10px;
+      }
+    }
   }
   .gameTitle {
     font-size: 1.5rem;
   }
   .gameGenre {
-    background-color: gray;
-    color: #222831;
+    padding: 0 3px;
+    border-radius: 5px;
+    background-color: #393e46;
+    color: #eeeeee;
   }
   &:hover {
     transform: scale(1.02);

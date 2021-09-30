@@ -48,7 +48,22 @@ function Home() {
                   {game.title} {game.id}
                 </p>
                 <div className="containerSecondaryCards">
-                  <p className="gameGenre">{game.genre}</p>
+                  <div>
+                    <p className="gameGenre">{game.genre}</p>
+                    {game.platform === "PC (Windows)" ? (
+                      <i className="fab fa-windows"></i>
+                    ) : game.platform === "Web Browser" ? (
+                      <i className="fas fa-globe"></i>
+                    ) : game.platform === "PC (Windows), Web Browser" ? (
+                      <>
+                        <i className="fab fa-windows"></i>
+                        <i className="fas fa-globe"></i>
+                      </>
+                    ) : (
+                      <span></span>
+                    )}
+                  </div>
+
                   <i
                     className={`${savedd} fa-bookmark`}
                     onClick={() => {
