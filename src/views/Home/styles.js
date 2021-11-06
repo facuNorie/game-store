@@ -17,7 +17,7 @@ export const GridGames = styled.div`
   display: grid;
   gap: 2rem;
   grid-auto-rows: 18rem;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
 `;
 
 export const Card = styled.div`
@@ -53,6 +53,9 @@ export const Card = styled.div`
   }
   .gameTitle {
     font-size: 1.5rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .gameGenre {
     padding: 0 3px;
