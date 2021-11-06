@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useRoute } from "wouter";
-import { getGameById } from "../.././apis/getGameById";
+import React, { useEffect, useState } from 'react';
+import { useRoute } from 'wouter';
+import { getGameById } from '../.././apis/getGameById';
+import { saveGame } from '../../features/saveGame';
 import {
   GameContainer,
   GameHeader,
@@ -15,29 +16,29 @@ import {
   AdditionalInfo,
   GameRequirementsContainer,
   Main,
-} from "./styles";
+} from './styles';
 export default function GameDetails() {
   const [gameDetails, setGameDetails] = useState([]);
   const [readMore, setReadMore] = useState(true);
-  const [, params] = useRoute("/:game");
-  let idGame = params.game.split("-").pop();
+  const [, params] = useRoute('/game/:game');
+  let idGame = params.game.split('-').pop();
 
   useEffect(() => {
     getGameById(idGame).then((data) => setGameDetails(data));
   }, []);
   return (
     <Main>
-      <GameContainer className="row">
-        <GameHeader className="col-sm-4">
+      <GameContainer className='row'>
+        <GameHeader className='col-sm-4'>
           {gameDetails.length !== 0 ? (
             <div>
-              <img src={gameDetails.thumbnail} alt="asd" />
+              <img src={gameDetails.thumbnail} alt='asd' />
               <ButtonsContainer>
-                <ButtonSave>
-                  <i className="far fa-bookmark"></i>
+                <ButtonSave onClick={() => saveGame(gameDetails)}>
+                  <i className='far fa-bookmark'></i>
                 </ButtonSave>
-                <ButtonPlayNow href={gameDetails.game_url} target="_BLANK">
-                  PLAY NOW <i className="fas fa-sign-out-alt"></i>
+                <ButtonPlayNow href={gameDetails.game_url} target='_BLANK'>
+                  PLAY NOW <i className='fas fa-sign-out-alt'></i>
                 </ButtonPlayNow>
               </ButtonsContainer>
             </div>
@@ -45,7 +46,7 @@ export default function GameDetails() {
             <span></span>
           )}
         </GameHeader>
-        <GameSection className="col-sm-8">
+        <GameSection className='col-sm-8'>
           {gameDetails.length !== 0 ? (
             <>
               <GameTitleContainer>
@@ -60,7 +61,7 @@ export default function GameDetails() {
                   <p>{gameDetails.short_description}</p>
                 )}
                 <button onClick={() => setReadMore(!readMore)}>
-                  {readMore ? " Read less -" : "Read more +"}
+                  {readMore ? ' Read less -' : 'Read more +'}
                 </button>
               </GameDescriptionContainer>
               <GameScreenshotsContainer>
@@ -71,7 +72,7 @@ export default function GameDetails() {
                       <img
                         src={screenshot.image}
                         key={screenshot.id}
-                        alt="asd"
+                        alt='asd'
                       />
                     );
                   })}
